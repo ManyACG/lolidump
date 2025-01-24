@@ -1,0 +1,39 @@
+package service
+
+import (
+	"context"
+
+	"github.com/ManyACG/lolidump/dao"
+	"github.com/ManyACG/lolidump/types"
+)
+
+func CreateApiKey(ctx context.Context, key string, quota int, permissions []types.ApiKeyPermission, description string) (*types.ApiKeyModel, error) {
+	apiKey := &types.ApiKeyModel{
+		Key:         key,
+		Quota:       quota,
+		Used:        0,
+		Permissions: permissions,
+		Description: description,
+	}
+	_, err := dao.CreateApiKey(ctx, apiKey)
+	if err != nil {
+		return nil, err
+	}
+	return dao.GetApiKeyByKey(ctx, key)
+}
+
+func GetApiKeyByKey(ctx context.Context, key string) (*types.ApiKeyModel, error) {
+	return dao.GetApiKeyByKey(ctx, key)
+}
+
+func IncreaseApiKeyUsed(ctx context.Context, key string) error {
+	return dao.IncreaseApiKeyUsed(ctx, key)
+}
+
+func AddApiKeyQuota(ctx context.Context, key string, quota int) error {
+	return dao.AddApiKeyQuota(ctx, key, quota)
+}
+
+func DeleteApiKey(ctx context.Context, key string) error {
+	return dao.DeleteApiKey(ctx, key)
+}

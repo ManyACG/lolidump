@@ -1,0 +1,8 @@
+config.toml
+logs/
+cache/
+.VSCodeCounter
+downloads/
+tmp/
+.air.toml
+.vscode/
