@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/ManyACG/lolidump/dao"
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 )
 
 func CreateApiKey(ctx context.Context, key string, quota int, permissions []types.ApiKeyPermission, description string) (*types.ApiKeyModel, error) {

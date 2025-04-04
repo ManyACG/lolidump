@@ -3,7 +3,7 @@ package dao
 import (
 	"context"
 
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 
 	"github.com/corona10/goimagehash"
 	"go.mongodb.org/mongo-driver/bson"

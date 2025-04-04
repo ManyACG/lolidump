@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 )
 
 type Service struct{}

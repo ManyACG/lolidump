@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/ManyACG/lolidump/dao"
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 )
 
 func GetArtworkModelTags(ctx context.Context, artworkModel *types.ArtworkModel) ([]string, error) {

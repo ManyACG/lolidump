@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	"github.com/ManyACG/lolidump/dao"
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 
 	"go.mongodb.org/mongo-driver/mongo"
 )

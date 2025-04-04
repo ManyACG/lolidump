@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/ManyACG/lolidump/dao"
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 )
 
 func GetRandomTags(ctx context.Context, limit int) ([]string, error) {

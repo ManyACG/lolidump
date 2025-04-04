@@ -8,7 +8,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ManyACG/lolidump/types"
+	"github.com/krau/ManyACG/types"
 
 	"github.com/duke-git/lancet/v2/slice"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -17,7 +17,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func DumpArtworks(ctx context.Context) ([]*types.ArtowrkDumpResult, error) {
+func DumpArtworks(ctx context.Context) ([]*types.ArtworkSearchDocument, error) {
 	cursor, err := dao.GetArtworks(ctx)
 	if err != nil {
 		return nil, err
@@ -30,9 +30,9 @@ func DumpArtworks(ctx context.Context) ([]*types.ArtowrkDumpResult, error) {
 	if err != nil {
 		return nil, err
 	}
-	results := make([]*types.ArtowrkDumpResult, len(artworks))
+	results := make([]*types.ArtworkSearchDocument, len(artworks))
 	for i, artwork := range artworks {
-		results[i] = &types.ArtowrkDumpResult{
+		results[i] = &types.ArtworkSearchDocument{
 			ID:          artwork.ID,
 			Title:       artwork.Title,
 			Artist:      artwork.Artist.Name + " " + artwork.Artist.Username,
