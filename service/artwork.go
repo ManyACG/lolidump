@@ -7,8 +7,6 @@ import (
 	"context"
 
 	"github.com/krau/ManyACG/types"
-
-	"github.com/duke-git/lancet/v2/slice"
 )
 
 func DumpArtworkToSearch(ctx context.Context) ([]*types.ArtworkSearchDocument, error) {
@@ -30,7 +28,7 @@ func DumpArtworkToSearch(ctx context.Context) ([]*types.ArtworkSearchDocument, e
 			ID:          artwork.ID,
 			Title:       artwork.Title,
 			Artist:      artwork.Artist.Name + " " + artwork.Artist.Username,
-			Tags:        slice.Join(artwork.Tags, ","),
+			Tags:        artwork.Tags,
 			Description: artwork.Description,
 			R18:         artwork.R18,
 		}

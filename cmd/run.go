@@ -13,8 +13,6 @@ import (
 	"github.com/meilisearch/meilisearch-go"
 
 	_ "net/http/pprof"
-
-	"gopkg.in/osteele/liquid.v1"
 )
 
 func Run() {
@@ -40,32 +38,32 @@ func Run() {
 	}
 }
 
-func testTemplate() {
-	cfg := config.Cfg.Dest.Meilisearch
-	docTemplateStr := cfg.Embedder.DocumentTemplate
-	engine := liquid.NewEngine()
-	tmpl, err := engine.ParseString(docTemplateStr)
-	if err != nil {
-		common.Logger.Panic(err)
-	}
+// func testTemplate() {
+// 	cfg := config.Cfg.Dest.Meilisearch
+// 	docTemplateStr := cfg.Embedder.DocumentTemplate
+// 	engine := liquid.NewEngine()
+// 	tmpl, err := engine.ParseString(docTemplateStr)
+// 	if err != nil {
+// 		common.Logger.Panic(err)
+// 	}
 
-	testData := map[string]any{
-		"ID":          "1234567890",
-		"title":       "Test Title",
-		"artist":      "Test Artist",
-		"tags":        "tag1,tag2,tag3",
-		"description": "",
-		"r18":         true,
-	}
-	result, err := tmpl.Render(testData)
-	if err != nil {
-		common.Logger.Panic(err)
-	}
-	common.Logger.Infof("Template test result: %s", result)
-}
+// 	testData := map[string]any{
+// 		"id":          primitive.NewObjectID(),
+// 		"title":       "Test Title",
+// 		"artist":      "Test Artist",
+// 		"tags":        []string{"tag1", "tag2"},
+// 		"description": "测试",
+// 		"r18":         true,
+// 	}
+// 	result, err := tmpl.Render(testData)
+// 	if err != nil {
+// 		common.Logger.Panic(err)
+// 	}
+// 	common.Logger.Infof("Template test result: %s", result)
+// }
 
 func dumpToMeilisearch(ctx context.Context) {
-	testTemplate()
+	// testTemplate()
 	cfg := config.Cfg.Dest.Meilisearch
 
 	client := meilisearch.New(config.Cfg.Dest.Meilisearch.Host, meilisearch.WithAPIKey(cfg.Key))
@@ -78,6 +76,12 @@ func dumpToMeilisearch(ctx context.Context) {
 	}
 
 	index := client.Index(cfg.Index)
+	if _, err := index.UpdateFilterableAttributesWithContext(ctx, &[]string{"artist", "tags", "r18"}); err != nil {
+		common.Logger.Panic(err)
+	}
+	if _, err := index.UpdateSearchableAttributesWithContext(ctx, &[]string{"title", "artist", "tags", "description"}); err != nil {
+		common.Logger.Panic(err)
+	}
 	_, err = index.UpdateEmbeddersWithContext(ctx, map[string]meilisearch.Embedder{
 		cfg.Embedder.Name: {
 			Source:           cfg.Embedder.Source,

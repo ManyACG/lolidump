@@ -9,7 +9,7 @@ require (
 	github.com/duke-git/lancet/v2 v2.3.5
 	github.com/gin-gonic/gin v1.10.0
 	github.com/gookit/slog v0.5.8
-	github.com/krau/ManyACG v0.81.1-0.20250404021637-8fa86c4656d4
+	github.com/krau/ManyACG v0.81.1-0.20250404044958-99137e3fa7f6
 	github.com/meilisearch/meilisearch-go v0.31.0
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/viper v1.20.1
@@ -72,7 +72,7 @@ require (
 	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.59.0 // indirect
+	github.com/valyala/fasthttp v1.60.0 // indirect
 	github.com/valyala/fastjson v1.6.4 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.uber.org/multierr v1.11.0 // indirect
