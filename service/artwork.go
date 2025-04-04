@@ -38,6 +38,7 @@ func DumpArtworks(ctx context.Context) ([]*types.ArtworkSearchDocument, error) {
 			Artist:      artwork.Artist.Name + " " + artwork.Artist.Username,
 			Tags:        slice.Join(artwork.Tags, ","),
 			Description: artwork.Description,
+			R18:         artwork.R18,
 		}
 	}
 	return results, nil
