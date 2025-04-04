@@ -22,7 +22,7 @@ func Run() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	common.Logger.Info("Start github.com/ManyACG/lolidump...")
+	common.Logger.Info("Start lolidump...")
 	dao.InitDB(ctx)
 	defer func() {
 		if err := dao.Client.Disconnect(ctx); err != nil {
