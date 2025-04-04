@@ -20,8 +20,20 @@ type destConfig struct {
 }
 
 type meilisearchConfig struct {
-	Host string `toml:"host" mapstructure:"host" json:"host" yaml:"host"`
-	Key  string `toml:"key" mapstructure:"key" json:"key" yaml:"key"`
+	Host     string                    `toml:"host" mapstructure:"host" json:"host" yaml:"host"`
+	Key      string                    `toml:"key" mapstructure:"key" json:"key" yaml:"key"`
+	Index    string                    `toml:"index" mapstructure:"index" json:"index" yaml:"index"`
+	Embedder meilisearchEmbedderConfig `toml:"embedder" mapstructure:"embedder" json:"embedder" yaml:"embedder"`
+}
+
+type meilisearchEmbedderConfig struct {
+	Name                     string `toml:"name" mapstructure:"name" json:"name" yaml:"name"`
+	Source                   string `toml:"source" mapstructure:"source" json:"source" yaml:"source"`
+	Model                    string `toml:"model" mapstructure:"model" json:"model" yaml:"model"`
+	APIKey                   string `toml:"api_key" mapstructure:"api_key" json:"api_key" yaml:"api_key"`
+	DocumentTemplate         string `toml:"document_template" mapstructure:"document_template" json:"document_template" yaml:"document_template"`
+	URL                      string `toml:"url" mapstructure:"url" json:"url" yaml:"url"`
+	Dimensions              int    `toml:"dimensions" mapstructure:"dimensions" json:"dimensions" yaml:"dimensions"`
 }
 
 var Cfg *Config
